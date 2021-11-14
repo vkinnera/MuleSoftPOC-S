@@ -19,5 +19,6 @@ http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/
 			</jms:consumer-type>
 		</jms:listener>
 		<logger level="INFO" doc:name="Logger" doc:id="aa673fc7-68f5-4d95-ae98-bd3bb24351c4" message="#[payload]"/>
+		<logger level="INFO" doc:name="Logger" doc:id="d1ad0957-3d19-4054-aee6-ab044c12d07b" message="dummy logger"/>
 	</flow>
 </mule>
