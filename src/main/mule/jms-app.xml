@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:jms="http://www.mulesoft.org/schema/mule/jms" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/current/mule-jms.xsd">
+	<jms:config name="JMS_Config1" doc:name="JMS Config" doc:id="9f7b4ad0-69d5-4651-a0cc-30fb92a78f6d" >
+		<jms:active-mq-connection username="admin" password="admin" >
+			<jms:factory-configuration brokerUrl="tcp://localhost:61616" />
+		</jms:active-mq-connection>
+	</jms:config>
+	<jms:config name="JMS_Config" doc:name="JMS Config" doc:id="405c48d9-450f-4c6c-99d5-085e23e9e1ca" >
+		<jms:active-mq-connection />
+	</jms:config>
+	<flow name="jms-appFlow" doc:id="da1a96f7-2fe3-48a7-8530-9d6462d182c5" >
+		<jms:listener doc:name="On New Message" doc:id="84f0a483-17bd-409c-af32-f622d894058c" config-ref="JMS_Config1" destination="T.CSD.EMP" numberOfConsumers="1" ackMode="IMMEDIATE">
+			<jms:consumer-type >
+				<jms:topic-consumer />
+			</jms:consumer-type>
+		</jms:listener>
+		<logger level="INFO" doc:name="Logger" doc:id="aa673fc7-68f5-4d95-ae98-bd3bb24351c4" message="#[payload]"/>
+	</flow>
+</mule>
